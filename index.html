@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter a location for Weather ..." id="cityName">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger" id="search">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 id="city">Dhaka</h1>
+            <h3><span id="temp">38.06</span>&deg;C</h3>
+            <h1 class="lead">Clouds</h1>
+        </div>
+    </div>
+<!-- js start -->
+
+<script>
+
+    const submit=document.getElementById('search').addEventListener('click',function(){
+        const cityName=document.getElementById('cityName').value
+       
+
+        fetch('http://api.openweathermap.org/data/2.5/weather?q='+cityName+'&units=metric&appid=1f3be922bbecb07ef56d82261d58717b')
+  .then((response) => response.json())
+  .then(data => {
+      
+      data.name=cityName;
+     document.getElementById('city').innerText=data.name
+     document.getElementById('temp').innerText=data.main.temp
+
+  })
+
+    })
+//     
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
